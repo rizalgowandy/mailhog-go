@@ -2,13 +2,12 @@ name: Go
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
   workflow_dispatch:
 
 jobs:
-
   build:
     name: Build
     runs-on: ubuntu-latest
@@ -19,7 +18,7 @@ jobs:
       - name: Set up Go 1.x
         uses: actions/setup-go@v4
         with:
-          go-version-file: 'go.mod'
+          go-version-file: "go.mod"
 
       - name: Get dependencies
         run: go mod vendor -v
@@ -28,4 +27,4 @@ jobs:
         run: go build -v .
 
       - name: Test
-        run: go test -v .
+        run: go test -v $(go list ./... | grep -v /test | tr "\n" " ")
