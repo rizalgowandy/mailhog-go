@@ -1,5 +1,4 @@
 coverage:
-  # acceptable: current >= 60% && diff >= 0.5%
   badge:
     path: docs/coverage.svg
   paths:
@@ -13,14 +12,11 @@ codeToTestRatio:
   test:
     - "**/*_test.go"
 testExecutionTime:
-  # acceptable: 1min30sec
   badge:
     path: docs/time.svg
 diff:
   datastores:
-    - artifact://rizalgowandy/mailhog-go
-push:
-  if: is_default_branch
+    - artifact://${GITHUB_REPOSITORY}
 comment:
   if: is_pull_request
   deletePrevious: true
@@ -28,4 +24,4 @@ comment:
 report:
   if: is_default_branch
   datastores:
-    - artifact://rizalgowandy/mailhog-go
+    - artifact://${GITHUB_REPOSITORY}
