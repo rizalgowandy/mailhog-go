@@ -1,7 +1,6 @@
 package test
 
 import (
-	"context"
 	"testing"
 
 	"github.com/rizalgowandy/gdk/pkg/converter"
@@ -31,7 +30,7 @@ func TestSendEmail(t *testing.T) {
 	require.NoError(t, err, "Failed to create client")
 
 	// Step 3: Get all messages
-	ctx := context.Background()
+	ctx := t.Context()
 	messages, err := client.GetAllMessages(ctx)
 	require.NoError(t, err, "Failed to get all messages")
 	require.NotEmpty(t, messages, "No messages found")

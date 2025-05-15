@@ -2,13 +2,13 @@ package entity
 
 import "time"
 
-// Message represents a message in 
+// Message represents a message in
 type Message struct {
-	ID      string                `json:"ID"`
+	ID      string         `json:"ID"`
 	From    Address        `json:"From"`
 	To      []Address      `json:"To"`
 	Content MessageContent `json:"Content"`
-	Created time.Time             `json:"Created"`
+	Created time.Time      `json:"Created"`
 	MIME    MIME           `json:"MIME"`
 	Raw     Raw            `json:"Raw"`
 }

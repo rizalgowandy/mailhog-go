@@ -27,5 +27,7 @@ func TestMain(m *testing.M) {
 	defer MailHogContainer.Terminate(ctx)
 
 	code := m.Run()
-	os.Exit(code)
+	func() {
+		os.Exit(code)
+	}()
 }

@@ -14,7 +14,7 @@ task analysis || exit 1
 task build || exit 1
 
 # Run test.
-task func_tests || exit 1
+task unit_tests || exit 1
 
 # Clean up unused dependency.
 go mod tidy

@@ -57,7 +57,7 @@ func SetupMailHog(ctx context.Context) error {
 		return fmt.Errorf("failed to get HTTP port: %w", err)
 	}
 
-	MailHogContainer.DSN = fmt.Sprintf("smtp://localhost:%s", smtpPort.Port())
-	MailHogContainer.UIEndpoint = fmt.Sprintf("http://localhost:%s", httpPort.Port())
+	MailHogContainer.DSN = "smtp://localhost:" + smtpPort.Port()
+	MailHogContainer.UIEndpoint = "http://localhost:" + httpPort.Port()
 	return nil
 }

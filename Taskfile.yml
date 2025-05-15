@@ -30,10 +30,15 @@ tasks:
     cmds:
       - golangci-lint run --new-from-rev HEAD~ ./...
 
+  unit_tests:
+    deps: []
+    cmds:
+      - gotestsum --format=testname --hide-summary=skipped -- -failfast -count=1 -v -race $(go list ./... | grep -v /test | tr "\n" " ")
+
   func_tests:
     deps: [generate]
     cmds:
-      - gotestsum --format=testname --hide-summary=skipped -- -failfast -count=1 -v -race ./...
+      - gotestsum --format=testname --hide-summary=skipped -- -failfast -count=1 -v -race ./test
 
   build:
     deps: [generate]
