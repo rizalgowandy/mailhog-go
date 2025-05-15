@@ -113,7 +113,11 @@ func (c *Client) DeleteMessage(ctx context.Context, id string) error {
 }
 
 // SearchMessages searches for messages based on the provided parameters
-func (c *Client) SearchMessages(ctx context.Context, kind, query string, start, limit int) ([]entity.Message, error) {
+func (c *Client) SearchMessages(
+	ctx context.Context,
+	kind, query string,
+	start, limit int,
+) ([]entity.Message, error) {
 	url := "/api/v2/search"
 
 	var (
@@ -149,7 +153,7 @@ func (c *Client) LatestFrom(ctx context.Context, from string) (*entity.Message, 
 	}
 
 	if len(messages) == 0 {
-		return nil, nil
+		return nil, fmt.Errorf("no messages found from %s", from)
 	}
 
 	return &messages[0], nil
@@ -163,7 +167,7 @@ func (c *Client) LatestTo(ctx context.Context, to string) (*entity.Message, erro
 	}
 
 	if len(messages) == 0 {
-		return nil, nil
+		return nil, fmt.Errorf("no messages found to %s", to)
 	}
 
 	return &messages[0], nil
@@ -177,7 +181,7 @@ func (c *Client) LatestContaining(ctx context.Context, query string) (*entity.Me
 	}
 
 	if len(messages) == 0 {
-		return nil, nil
+		return nil, fmt.Errorf("no messages found containing %s", query)
 	}
 
 	return &messages[0], nil
