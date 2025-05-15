@@ -1,4 +1,5 @@
 coverage:
+  # acceptable: current >= 60% && diff >= 0.5%
   badge:
     path: docs/coverage.svg
   paths:
@@ -12,11 +13,14 @@ codeToTestRatio:
   test:
     - "**/*_test.go"
 testExecutionTime:
+  # acceptable: 1min30sec
   badge:
     path: docs/time.svg
 diff:
   datastores:
     - artifact://${GITHUB_REPOSITORY}
+push:
+  if: is_default_branch
 comment:
   if: is_pull_request
   deletePrevious: true
