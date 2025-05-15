@@ -2,9 +2,9 @@ name: Coverage
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -17,10 +17,10 @@ jobs:
       - name: Set up Go 1.x
         uses: actions/setup-go@v4
         with:
-          go-version-file: 'go.mod'
+          go-version-file: "go.mod"
 
       - name: Run tests with coverage report output
-        run: go test ./... -coverprofile=docs/coverage.out
+        run: go test $(go list ./... | grep -v /test | tr "\n" " ") -coverprofile=docs/coverage.out
 
       - name: Comment
         uses: k1LoW/octocov-action@v0
