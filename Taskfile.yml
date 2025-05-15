@@ -30,7 +30,7 @@ tasks:
     cmds:
       - golangci-lint run --new-from-rev HEAD~ ./...
 
-  unit_tests:
+  func_tests:
     deps: [generate]
     cmds:
       - gotestsum --format=testname --hide-summary=skipped -- -failfast -count=1 -v -race ./...
@@ -39,3 +39,4 @@ tasks:
     deps: [generate]
     cmds:
       - CGO_ENABLED=0 go build -ldflags "-X main.Version={{.HASH}} -X main.Hash={{.HASH}}" -a -o {{.BINARY_PATH}} .
+      - rm {{.BINARY_PATH}}

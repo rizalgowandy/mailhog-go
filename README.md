@@ -1,44 +1,57 @@
-[![Go Doc](https://pkg.go.dev/badge/github.com/rizalgowandy/library-template-go?status.svg)](https://pkg.go.dev/github.com/rizalgowandy/library-template-go?tab=doc)
-[![Release](https://img.shields.io/github/release/rizalgowandy/library-template-go.svg?style=flat-square)](https://github.com/rizalgowandy/library-template-go/releases)
-[![Go Report Card](https://goreportcard.com/badge/github.com/rizalgowandy/library-template-go)](https://goreportcard.com/report/github.com/rizalgowandy/library-template-go)
-[![Build Status](https://github.com/rizalgowandy/library-template-go/workflows/Go/badge.svg?branch=main)](https://github.com/rizalgowandy/library-template-go/actions?query=branch%3Amain)
-[![Sourcegraph](https://sourcegraph.com/github.com/rizalgowandy/library-template-go/-/badge.svg)](https://sourcegraph.com/github.com/rizalgowandy/library-template-go?badge)
+[![Go Doc](https://pkg.go.dev/badge/github.com/rizalgowandy/mailhog-go?status.svg)](https://pkg.go.dev/github.com/rizalgowandy/mailhog-go?tab=doc)
+[![Release](https://img.shields.io/github/release/rizalgowandy/mailhog-go.svg?style=flat-square)](https://github.com/rizalgowandy/mailhog-go/releases)
+[![Go Report Card](https://goreportcard.com/badge/github.com/rizalgowandy/mailhog-go)](https://goreportcard.com/report/github.com/rizalgowandy/mailhog-go)
+[![Build Status](https://github.com/rizalgowandy/mailhog-go/workflows/Go/badge.svg?branch=main)](https://github.com/rizalgowandy/mailhog-go/actions?query=branch%3Amain)
+[![Sourcegraph](https://sourcegraph.com/github.com/rizalgowandy/mailhog-go/-/badge.svg)](https://sourcegraph.com/github.com/rizalgowandy/mailhog-go?badge)
 
-![logo](.github/library-template-go.png)
+![logo](.github/mailhog-go.png)
 
 ## Getting Started
 
-// TODO: replace me
+Interact with MailHog API.
 
 ## Installation
 
 ```shell
-# TODO: replace me
-go get -v github.com/rizalgowandy/library-template-go
+go get -v github.com/rizalgowandy/mailhog-go
 ```
 
 ## Quick Start
 
 ```go
-// TODO: replace me
+package main
+
+import (
+	"log"
+	"context"
+
+	"github.com/rizalgowandy/mailhog-go"
+	"github.com/rizalgowandy/mailhog-go/pkg/api"
+)
+
+func main() {
+	cfg := api.Config{
+		HostURL: MailHogContainer.UIEndpoint,
+	}
+	client, err := mailhog.NewClient(cfg)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	ctx := context.Background()
+	messages, err := client.GetAllMessages(ctx)
+	if err != nil {
+		log.Fatal(err)
+	}
+}
 ```
 
-For more example check [here](main_integration_test.go).
-
-## Test Double / Stub
-
-Sometimes it's make sense to make an API call without actually calling the API. In order to support that this library has a built-in stub that can be triggered. You can enable stub by injecting certain value to the context data. You can also enforce that certain API call will always return error with specific type and
-message.
-
-```go
-// TODO: replace me
-```
-
-For more example, check [here]().
+For more example, check [here](test/smtp_test.go).
 
 ## Supported API
 
-Version: // TODO: replace me
-
-- [// TODO: replace me]()
-  - [// TODO: replace me]()
+- GET /api/v2/messages
+- GET /api/v1/messages/{id}
+- DELETE /api/v1/messages
+- DELETE /api/v1/messages/{id}
+- GET /api/v2/search

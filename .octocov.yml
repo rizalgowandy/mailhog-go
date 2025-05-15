@@ -8,17 +8,17 @@ codeToTestRatio:
   badge:
     path: docs/ratio.svg
   code:
-    - '**/*.go'
-    - '!**/*_test.go'
+    - "**/*.go"
+    - "!**/*_test.go"
   test:
-    - '**/*_test.go'
+    - "**/*_test.go"
 testExecutionTime:
   # acceptable: 1min30sec
   badge:
     path: docs/time.svg
 diff:
   datastores:
-    - artifact://rizalgowandy/library-template-go
+    - artifact://rizalgowandy/mailhog-go
 push:
   if: is_default_branch
 comment:
@@ -28,4 +28,4 @@ comment:
 report:
   if: is_default_branch
   datastores:
-    - artifact://rizalgowandy/library-template-go
+    - artifact://rizalgowandy/mailhog-go
